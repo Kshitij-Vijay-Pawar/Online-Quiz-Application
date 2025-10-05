@@ -2,6 +2,18 @@
   "name": "quiz",
   "version": "0.1.0",
   "private": true,
+  "description": "A modern, full-stack quiz application with admin panel built with Next.js, TypeScript, and SQLite",
+  "keywords": ["quiz", "nextjs", "typescript", "sqlite", "admin-panel", "education"],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/quiz.git"
+  },
+  "homepage": "https://github.com/yourusername/quiz#readme",
+  "bugs": {
+    "url": "https://github.com/yourusername/quiz/issues"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,7 +21,14 @@
     "lint": "next lint",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "db:add": "tsx scripts/manage-db.ts add",
+    "db:list": "tsx scripts/manage-db.ts list",
+    "db:update": "tsx scripts/manage-db.ts update",
+    "db:delete": "tsx scripts/manage-db.ts delete",
+    "db:count": "tsx scripts/manage-db.ts count",
+    "db:clear": "tsx scripts/manage-db.ts clear",
+    "db:help": "tsx scripts/manage-db.ts help"
   },
   "dependencies": {
     "@types/better-sqlite3": "^7.6.13",
@@ -32,6 +51,7 @@
     "jest": "^30.2.0",
     "jest-environment-node": "^30.2.0",
     "tailwindcss": "^4",
+    "tsx": "^4.19.2",
     "typescript": "^5"
   }
 }
