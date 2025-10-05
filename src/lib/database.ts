@@ -40,58 +40,85 @@ function initializeDatabase() {
 
 // Seed database with sample questions
 export function seedDatabase() {
+
   const questions = [
-    {
-      text: "What is the capital of France?",
-      options: ["London", "Berlin", "Paris", "Madrid"],
-      correctAnswer: 2
-    },
-    {
-      text: "Which planet is known as the Red Planet?",
-      options: ["Venus", "Mars", "Jupiter", "Saturn"],
-      correctAnswer: 1
-    },
-    {
-      text: "What is 2 + 2?",
-      options: ["3", "4", "5", "6"],
-      correctAnswer: 1
-    },
-    {
-      text: "Who painted the Mona Lisa?",
-      options: ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"],
-      correctAnswer: 2
-    },
-    {
-      text: "What is the largest ocean on Earth?",
-      options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
-      correctAnswer: 3
-    },
-    {
-      text: "In which year did World War II end?",
-      options: ["1944", "1945", "1946", "1947"],
-      correctAnswer: 1
-    },
-    {
-      text: "What is the chemical symbol for gold?",
-      options: ["Go", "Gd", "Au", "Ag"],
-      correctAnswer: 2
-    },
-    {
-      text: "Which programming language is known as the 'language of the web'?",
-      options: ["Python", "Java", "JavaScript", "C++"],
-      correctAnswer: 2
-    },
-    {
-      text: "What is the smallest country in the world?",
-      options: ["Monaco", "San Marino", "Vatican City", "Liechtenstein"],
-      correctAnswer: 2
-    },
-    {
-      text: "How many continents are there?",
-      options: ["5", "6", "7", "8"],
-      correctAnswer: 2
-    }
-  ];
+  {
+    text: "What is the capital of India?",
+    options: ["Mumbai", "Kolkata", "New Delhi", "Chennai"],
+    correctAnswer: 2
+  },
+  {
+    text: "Who is known as the Father of the Nation in India?",
+    options: ["Jawaharlal Nehru", "Mahatma Gandhi", "B. R. Ambedkar", "Subhas Chandra Bose"],
+    correctAnswer: 1
+  },
+  {
+    text: "Which Indian city is also known as the 'Pink City'?",
+    options: ["Jaipur", "Udaipur", "Jodhpur", "Agra"],
+    correctAnswer: 0
+  },
+  {
+    text: "What is the national animal of India?",
+    options: ["Lion", "Tiger", "Elephant", "Peacock"],
+    correctAnswer: 1
+  },
+  {
+    text: "In which year did India gain independence?",
+    options: ["1945", "1946", "1947", "1948"],
+    correctAnswer: 2
+  },
+  {
+    text: "Who was the first Prime Minister of India?",
+    options: ["Sardar Patel", "Mahatma Gandhi", "Jawaharlal Nehru", "Dr. Rajendra Prasad"],
+    correctAnswer: 2
+  },
+  {
+    text: "Which is the largest state in India by area?",
+    options: ["Maharashtra", "Rajasthan", "Uttar Pradesh", "Madhya Pradesh"],
+    correctAnswer: 1
+  },
+  {
+    text: "What is the national currency of India?",
+    options: ["Dollar", "Rupee", "Pound", "Dinar"],
+    correctAnswer: 1
+  },
+  {
+    text: "Which river is known as the 'Ganga of the South'?",
+    options: ["Godavari", "Krishna", "Cauvery", "Yamuna"],
+    correctAnswer: 2
+  },
+  {
+    text: "Who wrote the Indian National Anthem?",
+    options: ["Bankim Chandra Chatterjee", "Rabindranath Tagore", "Sarojini Naidu", "Subramania Bharati"],
+    correctAnswer: 1
+  },
+  {
+    text: "Which Indian festival is known as the 'Festival of Lights'?",
+    options: ["Holi", "Diwali", "Navratri", "Eid"],
+    correctAnswer: 1
+  },
+  {
+    text: "Which city is known as the financial capital of India?",
+    options: ["Chennai", "New Delhi", "Bengaluru", "Mumbai"],
+    correctAnswer: 3
+  },
+  {
+    text: "Where is the Taj Mahal located?",
+    options: ["Delhi", "Agra", "Jaipur", "Lucknow"],
+    correctAnswer: 1
+  },
+  {
+    text: "Who was the first woman Prime Minister of India?",
+    options: ["Sarojini Naidu", "Pratibha Patil", "Indira Gandhi", "Sushma Swaraj"],
+    correctAnswer: 2
+  },
+  {
+    text: "Which Indian state is known as the 'Land of Five Rivers'?",
+    options: ["Punjab", "Haryana", "Bihar", "Gujarat"],
+    correctAnswer: 0
+  }
+];
+
 
   const database = getDatabase();
   
