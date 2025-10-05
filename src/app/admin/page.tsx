@@ -164,18 +164,18 @@ export default function AdminPage() {
 
           {showAddForm && (
             <form onSubmit={handleSubmit} className="mb-8 p-4 border rounded-lg bg-gray-50">
-              <h2 className="text-xl font-semibold mb-4">
+              <h2 className="text-xl font-semibold mb-4 text-gray-900">
                 {editingQuestion ? 'Edit Question' : 'Add New Question'}
               </h2>
               
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-gray-900 mb-2">
                   Question Text
                 </label>
                 <textarea
                   value={formData.text}
                   onChange={(e) => setFormData({ ...formData, text: e.target.value })}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                   rows={3}
                   required
                 />
@@ -191,7 +191,7 @@ export default function AdminPage() {
                       type="text"
                       value={option}
                       onChange={(e) => handleOptionChange(index, e.target.value)}
-                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                       required
                     />
                   </div>
@@ -205,7 +205,7 @@ export default function AdminPage() {
                 <select
                   value={formData.correctAnswer}
                   onChange={(e) => setFormData({ ...formData, correctAnswer: parseInt(e.target.value) })}
-                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
                 >
                   <option value={0}>A</option>
                   <option value={1}>B</option>

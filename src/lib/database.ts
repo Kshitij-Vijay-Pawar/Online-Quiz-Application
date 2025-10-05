@@ -8,15 +8,28 @@ interface Question {
   correctAnswer: number;
 }
 
-const dbPath = path.join(process.cwd(), 'quiz.db');
+// Use different database paths for different environments
+const dbPath = process.env.NODE_ENV === 'production' 
+  ? path.join('/tmp', 'quiz.db')  // Use /tmp in production (Vercel)
+  : path.join(process.cwd(), 'quiz.db');  // Use project root in development
+
 let db: Database.Database;
 
 // Initialize database connection
 export function getDatabase() {
   if (!db) {
-    db = new Database(dbPath);
-    db.pragma('journal_mode = WAL');
-    initializeDatabase();
+    try {
+      db = new Database(dbPath);
+      db.pragma('journal_mode = WAL');
+      initializeDatabase();
+    } catch (error) {
+      console.error('Error initializing database:', error);
+      // Fallback: try to create database in current working directory
+      const fallbackPath = path.join(process.cwd(), 'quiz.db');
+      db = new Database(fallbackPath);
+      db.pragma('journal_mode = WAL');
+      initializeDatabase();
+    }
   }
   return db;
 }
@@ -40,6 +53,13 @@ function initializeDatabase() {
 
 // Seed database with sample questions
 export function seedDatabase() {
+  const database = getDatabase();
+  
+  // Check if questions already exist
+  const count = database.prepare('SELECT COUNT(*) as count FROM questions').get() as { count: number };
+  if (count.count > 0 && process.env.NODE_ENV !== 'production') {
+    return; // Questions already seeded (skip in development)
+  }
 
   const questions = [
   {
@@ -118,15 +138,6 @@ export function seedDatabase() {
     correctAnswer: 0
   }
 ];
-
-
-  const database = getDatabase();
-  
-  // Check if questions already exist
-  const count = database.prepare('SELECT COUNT(*) as count FROM questions').get() as { count: number };
-  if (count.count > 0) {
-    return; // Questions already seeded
-  }
 
   const insertQuestion = database.prepare(`
     INSERT INTO questions (text, option_a, option_b, option_c, option_d, correct_answer)

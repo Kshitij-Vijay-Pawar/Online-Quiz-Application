@@ -16,6 +16,7 @@
   },
   "scripts": {
     "dev": "next dev",
+    "prebuild": "tsx scripts/init-db.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
