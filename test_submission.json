@@ -1,0 +1,14 @@
+{
+  "answers": [
+    {"questionId": 1, "selectedOption": 2},
+    {"questionId": 2, "selectedOption": 1},
+    {"questionId": 3, "selectedOption": 1},
+    {"questionId": 4, "selectedOption": 2},
+    {"questionId": 5, "selectedOption": 3},
+    {"questionId": 6, "selectedOption": 1},
+    {"questionId": 7, "selectedOption": 2},
+    {"questionId": 8, "selectedOption": 2},
+    {"questionId": 9, "selectedOption": 2},
+    {"questionId": 10, "selectedOption": 2}
+  ]
+}
