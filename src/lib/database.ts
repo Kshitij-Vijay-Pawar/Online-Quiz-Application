@@ -1,5 +1,6 @@
 import Database from 'better-sqlite3';
 import path from 'path';
+import fs from 'fs';
 
 interface Question {
   id: number;
@@ -19,16 +20,33 @@ let db: Database.Database;
 export function getDatabase() {
   if (!db) {
     try {
+      // Ensure the directory exists
+      const dbDir = path.dirname(dbPath);
+      if (dbDir !== '/tmp' && dbDir !== process.cwd()) {
+        // For other directories, try to create if needed
+        try {
+          fs.mkdirSync(dbDir, { recursive: true });
+        } catch {
+          // Directory creation failed, continue anyway
+        }
+      }
+      
       db = new Database(dbPath);
       db.pragma('journal_mode = WAL');
       initializeDatabase();
     } catch (error) {
-      console.error('Error initializing database:', error);
+      console.error('Error initializing database at', dbPath, ':', error);
       // Fallback: try to create database in current working directory
-      const fallbackPath = path.join(process.cwd(), 'quiz.db');
-      db = new Database(fallbackPath);
-      db.pragma('journal_mode = WAL');
-      initializeDatabase();
+      try {
+        const fallbackPath = path.join(process.cwd(), 'quiz.db');
+        console.log('Trying fallback path:', fallbackPath);
+        db = new Database(fallbackPath);
+        db.pragma('journal_mode = WAL');
+        initializeDatabase();
+      } catch (fallbackError) {
+        console.error('Fallback database initialization also failed:', fallbackError);
+        throw new Error('Failed to initialize database in both primary and fallback locations');
+      }
     }
   }
   return db;
@@ -58,8 +76,11 @@ export function seedDatabase() {
   // Check if questions already exist
   const count = database.prepare('SELECT COUNT(*) as count FROM questions').get() as { count: number };
   if (count.count > 0 && process.env.NODE_ENV !== 'production') {
+    console.log(`Database already has ${count.count} questions, skipping seed in development`);
     return; // Questions already seeded (skip in development)
   }
+  
+  console.log('Seeding database with sample questions...');
 
   const questions = [
   {
