@@ -146,7 +146,7 @@ async function updateQuestion() {
   });
 
   const question = await new Promise<string>((resolve) => {
-    readline.question('Enter new question (or press Enter to keep current): ', (answer) => {
+    readline.question('Enter new question (or press Enter to keep current): ', (answer: string) => {
       resolve(answer || existingQuestion.text);
     });
   });
@@ -154,7 +154,7 @@ async function updateQuestion() {
   const options: string[] = [];
   for (let i = 0; i < 4; i++) {
     const option = await new Promise<string>((resolve) => {
-      readline.question(`Enter option ${String.fromCharCode(65 + i)} (or press Enter to keep current): `, (answer) => {
+      readline.question(`Enter option ${String.fromCharCode(65 + i)} (or press Enter to keep current): `, (answer: string) => {
         resolve(answer || existingQuestion.options[i]);
       });
     });
@@ -162,7 +162,7 @@ async function updateQuestion() {
   }
 
   const correctAnswer = await new Promise<number>((resolve) => {
-    readline.question(`Enter correct answer (0-3, current: ${existingQuestion.correctAnswer}): `, (answer) => {
+    readline.question(`Enter correct answer (0-3, current: ${existingQuestion.correctAnswer}): `, (answer: string) => {
       resolve(answer ? parseInt(answer) : existingQuestion.correctAnswer);
     });
   });
@@ -237,7 +237,7 @@ function clearQuestions() {
     output: process.stdout
   });
 
-  readline.question('Are you sure? Type "DELETE ALL" to confirm: ', (answer) => {
+  readline.question('Are you sure? Type "DELETE ALL" to confirm: ', (answer: string) => {
     readline.close();
     
     if (answer === 'DELETE ALL') {

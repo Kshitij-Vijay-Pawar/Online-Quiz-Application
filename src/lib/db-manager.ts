@@ -6,6 +6,16 @@ interface QuestionData {
   correctAnswer: number;
 }
 
+interface QuestionRow {
+  id: number;
+  text: string;
+  option_a: string;
+  option_b: string;
+  option_c: string;
+  option_d: string;
+  correct_answer: number;
+}
+
 export class DatabaseManager {
   private db = getDatabase();
 
@@ -87,7 +97,7 @@ export class DatabaseManager {
       WHERE id = ?
     `);
 
-    const row = getQuestion.get(id) as any;
+    const row = getQuestion.get(id) as QuestionRow | undefined;
     if (!row) return null;
 
     return {
@@ -104,15 +114,7 @@ export class DatabaseManager {
       SELECT id, text, option_a, option_b, option_c, option_d, correct_answer
       FROM questions
       ORDER BY id
-    `).all() as Array<{
-      id: number;
-      text: string;
-      option_a: string;
-      option_b: string;
-      option_c: string;
-      option_d: string;
-      correct_answer: number;
-    }>;
+    `).all() as QuestionRow[];
 
     return rows.map(row => ({
       id: row.id,
